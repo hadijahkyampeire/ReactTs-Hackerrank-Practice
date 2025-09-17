@@ -1,0 +1,236 @@
+.task-input {
+  height: 3rem;
+  width: 10rem;
+}
+/* ====== Design tokens ====== */
+:root {
+  --hk-green: #1ba94c;    /* HackerRank green */
+  --hk-green-600: #169243;
+  --ink: #0f172a;         /* dark text */
+  --muted: #64748b;       /* secondary text */
+  --border: #e5e7eb;      /* gray-200 */
+  --panel: #f8fafc;       /* slate-50 */
+  --danger: #dc2626;      /* red-600 */
+  --danger-50: #fef2f2;   /* red-50 */
+}
+
+/* ====== Layout ====== */
+.kanban {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 8px 8px 12px;
+  color: var(--ink);
+  background: #fff;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 8px 0 20px;
+}
+
+.task-input {
+  width: 340px;
+  max-width: 90vw;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  transition: box-shadow .15s ease, border-color .15s ease;
+}
+
+.task-input:focus {
+  border-color: var(--hk-green);
+  box-shadow: 0 0 0 4px rgba(27,169,76,.15);
+}
+
+.controls > button,
+.btn {
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: var(--hk-green);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: .2px;
+  cursor: pointer;
+  transition: background .15s ease, transform .05s ease;
+}
+
+.controls > button:hover,
+.btn:hover {
+  background: var(--hk-green-600);
+}
+
+.controls > button:active,
+.btn:active {
+  transform: translateY(1px);
+}
+
+.controls > button:disabled,
+.btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* ====== Board grid ====== */
+.stages {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.stages > div {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(2,6,23,.04);
+}
+
+.stages h3 {
+  margin: 0;
+  padding: 12px 14px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+
+/* List area */
+.stages ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  min-height: 260px; /* gives some canvas even when empty */
+}
+
+/* ====== Task item ====== */
+.task {
+  margin: 8px 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 1px 6px rgba(2,6,23,.04);
+}
+
+.li-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.li-content > span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ====== Small icon buttons (Back / Forward / Delete) ====== */
+.icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon-only {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: #0f172a;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .05s ease;
+}
+
+.icon-only:hover {
+  background: #eef2f7;
+  border-color: #d9dde3;
+}
+
+.icon-only:active {
+  transform: translateY(1px);
+}
+
+.icon-only:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.icon-only.danger {
+  background: var(--danger-50);
+  color: var(--danger);
+  border-color: #fecaca;
+}
+
+/* row wrapper for the three action buttons */
+.icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* shared button styling */
+.icons button {
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  transition: background .15s ease, opacity .15s ease, transform .05s ease;
+}
+
+/* individual colors */
+.back-btn     { background: #111827; }  /* black-ish */
+.back-btn:hover { background: #0b1220; }
+
+.forward-btn  { background: #2563eb; }  /* blue */
+.forward-btn:hover { background: #1d4ed8; }
+
+.delete-btn   { background: #dc2626; }  /* red */
+.delete-btn:hover { background: #b91c1c; }
+
+/* disabled state */
+.icons button:disabled {
+  cursor: not-allowed;
+  opacity: .45;
+  background: #e5e7eb !important;
+  color: #6b7280 !important;
+  border-color: #e5e7eb !important;
+  transform: none;
+}
+
+.icons button:active:not(:disabled) { transform: translateY(1px); }
+.icons button:focus-visible { outline: 2px solid #1ba94c; outline-offset: 2px; }
+
+/* Optional utilities to match class names seen in screenshots */
+.x-small { width: 26px; height: 26px; font-size: 18px; }
+.mx-2 { margin-left: 8px; margin-right: 8px; }
+
+.material-icons {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* subtle slide/appear */
+.slide-up-fade-in {
+  animation: k-slide-up .18s ease-out both;
+}
+@keyframes k-slide-up {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

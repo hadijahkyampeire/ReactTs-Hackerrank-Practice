@@ -1,0 +1,137 @@
+/* ===== Theme tokens (HackerRank vibe) ===== */
+:root {
+  --hr-green: #1ba94c;
+  --hr-green-600: #169243;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --border: #e5e7eb;
+  --panel: #f8fafc;
+}
+
+/* ===== Container ===== */
+[data-testid="poll-manager"] {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px 16px 20px;
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(2,6,23,.04);
+}
+
+[data-testid="poll-manager"] > h3 {
+  margin: 4px 0 16px;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* If you later add className="choices", this will apply. 
+   Your inline style works fine without it. */
+.choices {
+  display: flex;
+  gap: 16px;
+}
+
+/* ===== Option card ===== */
+.option {
+  flex: 1 1 0;
+  min-width: 260px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 1px 6px rgba(2,6,23,.04);
+  display: grid;
+  grid-template-rows: auto auto auto;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+/* The label (choice-1 / choice-2) */
+.option [data-testid^="choice-"] {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+/* Vote count */
+.option [aria-label="votes"] {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ===== Buttons ===== */
+button {
+  font: inherit;
+}
+
+.option button,
+.results [data-testid="result-button"] {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-weight: 700;
+  letter-spacing: .2px;
+  color: #fff;
+  background: var(--hr-green);
+  cursor: pointer;
+  transition: background .15s ease, transform .05s ease, opacity .15s ease;
+}
+
+.option button:hover,
+.results [data-testid="result-button"]:hover {
+  background: var(--hr-green-600);
+}
+
+.option button:active:not(:disabled),
+.results [data-testid="result-button"]:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.option button:disabled,
+.results [data-testid="result-button"]:disabled {
+  background: #e5e7eb !important;
+  color: #6b7280 !important;
+  cursor: not-allowed;
+  border-color: #e5e7eb !important;
+  transform: none;
+}
+
+.option button:focus-visible,
+.results [data-testid="result-button"]:focus-visible {
+  outline: 2px solid var(--hr-green);
+  outline-offset: 2px;
+}
+
+/* ===== Results area ===== */
+.results {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.results [data-testid="result-text"] {
+  min-height: 24px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.results .hint {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* nice enter animation (optional) */
+@keyframes pop {
+  from { transform: scale(.98); opacity: .8; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+.option { animation: pop .18s ease-out both; }

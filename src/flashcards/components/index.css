@@ -1,0 +1,100 @@
+/* ===== Theme tokens (HackerRank-ish) ===== */
+:root {
+  --hr-green: #00ea64;
+  --hr-green-700: #06c454;
+  --ink: #111827;
+  --muted: #6b7280;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --shadow: 0 1px 2px rgba(0,0,0,.06), 0 2px 6px rgba(0,0,0,.04);
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--ink);
+  background: #fff;
+}
+
+.flashcard-deck {
+  display: flex;
+  gap: 2rem;
+}
+/* ===== App shell helpers ===== */
+.deck-wrap { max-width: 1024px; margin: 0 auto; padding: 16px; }
+.deck-actions { margin-top: 16px; }
+
+/* Button (green/black accent) */
+.btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-primary {
+  background: var(--hr-green);
+  color: #0a0a0a;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 2px 8px rgba(0,0,0,.08);
+}
+.btn-primary:hover { background: var(--hr-green-700); }
+.btn:focus-visible { outline: 2px solid var(--hr-green); outline-offset: 2px; }
+
+/* ===== Flashcards layout & flip effect ===== */
+.flashcard-deck {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.flashcard {
+  height: 180px;        /* ~11rem */
+  perspective: 1000px;  /* enable 3D */
+  cursor: pointer;
+  display: flex;
+  gap: 2rem;
+}
+
+.flashcard-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  transform-style: preserve-3d;
+  transition: transform .5s ease;
+}
+
+.flashcard-content.flipped { transform: rotateY(180deg); }
+
+.front,
+.back {
+  position: absolute;
+  inset: 0;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  border-radius: 12px;
+}
+
+/* front visible by default */
+.front {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* back shows when flipped */
+.back {
+  transform: rotateY(180deg);
+  background: #eef2ff;      /* soft indigo-ish like the screenshots */
+  color: #1f2937;
+  font-weight: 500;
+}
